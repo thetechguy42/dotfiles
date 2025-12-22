@@ -6,17 +6,27 @@ exec-on-workspace-change = ['/bin/bash', '-c',
     'sketchybar --trigger aerospace_workspace_change'
 ]
 
+# ~/.aerospace.toml
+
+[gaps]
+#inner.horizontal = 10
+#inner.vertical = 10
+#outer.left = 10
+#outer.bottom = 10
+outer.top = 50        # Reserve space for SketchyBar (adjust height as needed)
+#outer.right = 10
+
 [mode.main.binding]
-# Workspace Navigation (matches i3/COSMIC: Super+N)
-cmd-1 = 'workspace 1'
-cmd-2 = 'workspace 2'
-cmd-3 = 'workspace 3'
-cmd-4 = 'workspace 4'
-cmd-5 = 'workspace 5'
-cmd-6 = 'workspace 6'
-cmd-7 = 'workspace 7'
-cmd-8 = 'workspace 8'
-cmd-9 = 'workspace 9'
+# Workspace Navigation (Hyper+[1-9])
+cmd-ctrl-alt-shift-1 = 'workspace 1'
+cmd-ctrl-alt-shift-2 = 'workspace 2'
+cmd-ctrl-alt-shift-3 = 'workspace 3'
+cmd-ctrl-alt-shift-4 = 'workspace 4'
+cmd-ctrl-alt-shift-5 = 'workspace 5'
+cmd-ctrl-alt-shift-6 = 'workspace 6'
+cmd-ctrl-alt-shift-7 = 'workspace 7'
+cmd-ctrl-alt-shift-8 = 'workspace 8'
+cmd-ctrl-alt-shift-9 = 'workspace 9'
 
 # Move windows to workspace (matches i3/COSMIC: Super+Shift+N)
 alt-shift-1 = 'move-node-to-workspace 1'
@@ -28,6 +38,9 @@ alt-shift-6 = 'move-node-to-workspace 6'
 alt-shift-7 = 'move-node-to-workspace 7'
 alt-shift-8 = 'move-node-to-workspace 8'
 alt-shift-9 = 'move-node-to-workspace 9'
+
+# Enter "service mode" for moving/resizing (Hyper+S)
+cmd-ctrl-alt-shift-s = 'mode service'
 
 # Focus (matches i3: Super+h/j/k/l)
 alt-h = 'focus left'
@@ -71,3 +84,13 @@ run = ['layout floating']
 [[on-window-detected]]
 if.app-name-regex-substring = 'Microsoft Teams'
 run = ['move-node-to-workspace 4']
+
+[mode.service.binding]
+# Move window to workspace
+1 = 'move-node-to-workspace 1'
+2 = 'move-node-to-workspace 2'
+
+# Exit service mode
+esc = 'mode main'
+enter = 'mode main'
+
