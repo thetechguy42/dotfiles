@@ -1,0 +1,95 @@
+after-startup-command = [
+    # Launch SketchyBar first
+    'exec-and-forget sketchybar',
+    # Then send the trigger event (optional, for workspace integration)
+    'exec-and-forget sketchybar --trigger aerospace_workspace_change'
+]
+
+start-at-login = false  # So it starts automatically at login
+
+exec-on-workspace-change = ['/bin/bash', '-c',
+    'sketchybar --trigger aerospace_workspace_change'
+]
+
+[gaps]
+#inner.horizontal = 10
+#inner.vertical = 10
+#outer.left = 10
+#outer.bottom = 10
+outer.top = 40        # Reserve space for SketchyBar (adjust height as needed)
+#outer.right = 10
+
+[mode.main.binding]
+# Workspace Navigation (Hyper+[1-9])
+cmd-ctrl-alt-shift-1 = 'workspace 1'
+cmd-ctrl-alt-shift-2 = 'workspace 2'
+cmd-ctrl-alt-shift-3 = 'workspace 3'
+cmd-ctrl-alt-shift-4 = 'workspace 4'
+cmd-ctrl-alt-shift-5 = 'workspace 5'
+cmd-ctrl-alt-shift-6 = 'workspace 6'
+cmd-ctrl-alt-shift-7 = 'workspace 7'
+cmd-ctrl-alt-shift-8 = 'workspace 8'
+cmd-ctrl-alt-shift-9 = 'workspace 9'
+
+# Enter "service mode" for moving/resizing (Hyper+S)
+cmd-ctrl-alt-shift-s = 'mode service'
+
+# Focus (matches i3: Super+h/j/k/l)
+alt-h = 'focus left'
+alt-j = 'focus down'
+alt-k = 'focus up'
+alt-l = 'focus right'
+
+# Resize (using Super+Ctrl to match COSMIC style)
+cmd-ctrl-h = 'resize width -50'
+cmd-ctrl-l = 'resize width +50'
+cmd-ctrl-k = 'resize height -50'
+cmd-ctrl-j = 'resize height +50'
+
+# Fullscreen - compromise between i3 (Super+f) and COSMIC (Super+m)
+alt-f = 'fullscreen'
+
+# Layout toggles
+alt-v = 'layout floating tiling' 
+alt-comma = 'layout accordion horizontal vertical'
+alt-slash = 'layout tiles horizontal vertical'
+
+# Reload config (matches i3: Super+Shift+c)
+cmd-shift-c = 'reload-config'
+
+# App shortcuts (keeping Alt for these avoids conflicts)
+alt-shift-o = 'exec-and-forget open -a /Applications/Obsidian.app'
+alt-shift-s = 'exec-and-forget open -a /Applications/Safari.app'
+alt-shift-b = [
+    'workspace 9',
+    'exec-and-forget open -na "Brave Browser" --args --profile-directory="Profile 1"'
+]
+alt-shift-w = [
+    'workspace 1',
+    'exec-and-forget open -na "Brave Browser" --args --profile-directory="Default"'
+]
+
+[[on-window-detected]]
+if.app-id = 'com.apple.finder'
+run = ['layout floating']
+
+[[on-window-detected]]
+if.app-name-regex-substring = 'Microsoft Teams'
+run = ['move-node-to-workspace 4']
+
+[mode.service.binding]
+# Move window to workspace
+1 = 'move-node-to-workspace 1'
+2 = 'move-node-to-workspace 2'
+3 = 'move-node-to-workspace 3'
+4 = 'move-node-to-workspace 4'
+5 = 'move-node-to-workspace 5'
+6 = 'move-node-to-workspace 6'
+7 = 'move-node-to-workspace 7'
+8 = 'move-node-to-workspace 8'
+9 = 'move-node-to-workspace 9'
+
+# Exit service mode
+esc = 'mode main'
+enter = 'mode main'
+

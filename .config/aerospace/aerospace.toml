@@ -1,0 +1,77 @@
+# AeroSpace Configuration
+after-startup-command = ['exec-and-forget sketchybar --trigger aerospace_workspace_change']
+start-at-login = false
+
+# Send events to SketchyBar when workspace changes
+exec-on-workspace-change = ['/bin/bash', '-c',
+    'sketchybar --trigger aerospace_workspace_change'
+]
+
+[mode.main.binding]
+# Workspace Navigation
+alt-1 = 'workspace 1'  # Focus Work
+alt-2 = 'workspace 2'  # Remote Desktop
+alt-3 = 'workspace 3'  # Planning
+alt-4 = 'workspace 4'  # Communication
+alt-5 = 'workspace 5'  # AI / Research
+alt-6 = 'workspace 6'  # Utility Zone
+alt-7 = 'workspace 7'  # Media / Break
+alt-8 = 'workspace 8'  # Creative Work
+alt-9 = 'workspace 9'  # Personal Admin
+
+# Move windows to workspace
+alt-shift-1 = 'move-node-to-workspace 1'
+alt-shift-2 = 'move-node-to-workspace 2'
+alt-shift-3 = 'move-node-to-workspace 3'
+alt-shift-4 = 'move-node-to-workspace 4'
+alt-shift-5 = 'move-node-to-workspace 5'
+alt-shift-6 = 'move-node-to-workspace 6'
+alt-shift-7 = 'move-node-to-workspace 7'
+alt-shift-8 = 'move-node-to-workspace 8'
+alt-shift-9 = 'move-node-to-workspace 9'
+
+# Resize windows (for those 70/30 splits!)
+cmd-alt-h = 'resize width -50'
+cmd-alt-l = 'resize width +50'
+cmd-alt-k = 'resize height -50'
+cmd-alt-j = 'resize height +50'
+cmd-alt-f = 'fullscreen'
+
+# Change Focus
+alt-h = 'focus left'
+alt-j = 'focus down'
+alt-k = 'focus up'
+alt-l = 'focus right'
+
+alt-ctrl-f = 'layout floating tiling'
+alt-comma = 'layout accordion horizontal vertical'
+alt-slash = 'layout tiles horizontal vertical'
+
+# Reload config
+cmd-alt-ctrl-r = 'reload-config'
+
+# App shortcuts
+alt-shift-o = 'exec-and-forget open -a /Applications/Obsidian.app'
+alt-shift-s = 'exec-and-forget open -a /Applications/Safari.app'
+
+alt-shift-b = [
+    'workspace 9',
+    'exec-and-forget open -na "Brave Browser" --args --profile-directory="Profile 1"'
+]
+
+alt-shift-w = [
+    'workspace 1',
+    'exec-and-forget open -na "Brave Browser" --args --profile-directory="Default"'
+]
+
+# Default space
+[[on-window-detected]]
+if.app-id = 'com.apple.finder'
+run = [
+'layout floating'
+]
+
+[[on-window-detected]]
+if.app-name-regex-substring = 'Microsoft Teams'              
+run = ['move-node-to-workspace 4'] 
+
