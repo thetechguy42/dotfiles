@@ -1,22 +1,22 @@
-after-startup-command = [
+#after-startup-command = [
     # Launch SketchyBar first
-    'exec-and-forget sketchybar',
+#    'exec-and-forget sketchybar',
     # Then send the trigger event (optional, for workspace integration)
-    'exec-and-forget sketchybar --trigger aerospace_workspace_change'
-]
+#    'exec-and-forget sketchybar --trigger aerospace_workspace_change'
+#]
 
 start-at-login = false  # So it starts automatically at login
 
-exec-on-workspace-change = ['/bin/bash', '-c',
-    'sketchybar --trigger aerospace_workspace_change'
-]
+#exec-on-workspace-change = ['/bin/bash', '-c',
+#    'sketchybar --trigger aerospace_workspace_change'
+#]
 
 [gaps]
 #inner.horizontal = 10
 #inner.vertical = 10
 #outer.left = 10
 #outer.bottom = 10
-outer.top = 40        # Reserve space for SketchyBar (adjust height as needed)
+#outer.top = 40        # Reserve space for SketchyBar (adjust height as needed)
 #outer.right = 10
 
 [mode.main.binding]
@@ -75,6 +75,10 @@ run = ['layout floating']
 
 [[on-window-detected]]
 if.app-name-regex-substring = 'Microsoft Teams'
+run = ['move-node-to-workspace 4']
+
+[[on-window-detected]]
+if.app-id = 'com.apple.MobileSMS'
 run = ['move-node-to-workspace 4']
 
 [mode.service.binding]
