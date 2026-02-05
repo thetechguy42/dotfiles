@@ -98,6 +98,26 @@
                         ]
                     },
                     {
+                        "description": "Hyper+Q → Cmd+Q (quit app).",
+                        "manipulators": [
+                            {
+                                "from": {
+                                    "key_code": "q",
+                                    "modifiers": {
+                                        "mandatory": ["left_command", "left_control", "left_option", "left_shift"]
+                                    }
+                                },
+                                "to": [
+                                    {
+                                        "key_code": "q",
+                                        "modifiers": ["left_command"]
+                                    }
+                                ],
+                                "type": "basic"
+                            }
+                        ]
+                    },
+                    {
                         "description": "Hyper+R → Cmd+Shift+R (Wispr Flow start). Done in Karabiner so it works regardless of app event taps.",
                         "manipulators": [
                             {

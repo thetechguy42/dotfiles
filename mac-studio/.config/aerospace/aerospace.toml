@@ -53,9 +53,6 @@ cmd-ctrl-j = 'resize height +50'
 # Fullscreen
 cmd-ctrl-alt-shift-f = 'fullscreen'
 
-# Close window
-cmd-ctrl-alt-shift-q = 'close'
-
 # Layout toggles
 cmd-ctrl-alt-shift-v = 'layout floating tiling'
 alt-comma = 'layout accordion horizontal vertical'
