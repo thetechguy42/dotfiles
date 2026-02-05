@@ -1,0 +1,20 @@
+(defcfg
+  danger-enable-cmd yes
+  process-unmapped-keys yes
+)
+
+(defsrc
+  spc o
+)
+
+(defalias
+  spc-hold (tap-hold-press 300 300 spc (layer-while-held apps))
+)
+
+(deflayer default
+  @spc-hold _
+)
+
+(deflayer apps
+  _   (cmd open -a Obsidian)
+)
