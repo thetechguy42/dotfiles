@@ -3,15 +3,14 @@
 
 local hyper = {"cmd", "alt", "ctrl", "shift"}
 
--- Hyper + R: Trigger Wispr Flow (translates to Cmd+Shift+R for Wispr Flow)
-hs.hotkey.bind(hyper, "r", function()
-    hs.eventtap.keyStroke({"cmd", "shift"}, "r")
-end)
-
--- Hyper + H: Trigger Home Row (translates to Cmd+Shift+H for Home Row)
-hs.hotkey.bind(hyper, "h", function()
-    hs.eventtap.keyStroke({"cmd", "shift"}, "h")
-end)
+-- ---------------------------------------------------------------------------
+-- App-specific trigger translations are handled in Karabiner, not here.
+-- Karabiner operates at the driver level, so these work regardless of
+-- which app has focus or what event taps are active (e.g. Wispr Flow
+-- while recording). If these stop working, check IN-APP shortcut settings:
+--   Wispr Flow:  Start = Cmd+Shift+R  |  Stop  = Cmd+Shift+X
+--   Home Row:    Trigger = Cmd+Shift+H
+-- ---------------------------------------------------------------------------
 
 -- Hyper + I: Launch iMessage
 hs.hotkey.bind(hyper, "i", function()
