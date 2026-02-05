@@ -40,6 +40,64 @@
                         ]
                     },
                     {
+                        "description": "Hold C for 750ms → Cmd+C (copy). Tap or fast type normally.",
+                        "manipulators": [
+                            {
+                                "from": {
+                                    "key_code": "c",
+                                    "modifiers": { "optional": ["any"] }
+                                },
+                                "to_if_alone": [
+                                    { "key_code": "c", "halt": true }
+                                ],
+                                "to_delayed_action": {
+                                    "to_if_canceled": [
+                                        { "key_code": "c" }
+                                    ],
+                                    "to_if_invoked": [
+                                        {
+                                            "key_code": "c",
+                                            "modifiers": ["left_command"]
+                                        }
+                                    ]
+                                },
+                                "parameters": {
+                                    "basic.to_delayed_action_delay_milliseconds": 750
+                                },
+                                "type": "basic"
+                            }
+                        ]
+                    },
+                    {
+                        "description": "Hold V for 750ms → Cmd+V (paste). Tap or fast type normally.",
+                        "manipulators": [
+                            {
+                                "from": {
+                                    "key_code": "v",
+                                    "modifiers": { "optional": ["any"] }
+                                },
+                                "to_if_alone": [
+                                    { "key_code": "v", "halt": true }
+                                ],
+                                "to_delayed_action": {
+                                    "to_if_canceled": [
+                                        { "key_code": "v" }
+                                    ],
+                                    "to_if_invoked": [
+                                        {
+                                            "key_code": "v",
+                                            "modifiers": ["left_command"]
+                                        }
+                                    ]
+                                },
+                                "parameters": {
+                                    "basic.to_delayed_action_delay_milliseconds": 750
+                                },
+                                "type": "basic"
+                            }
+                        ]
+                    },
+                    {
                         "description": "Hyper+R → Cmd+Shift+R (Wispr Flow start). Done in Karabiner so it works regardless of app event taps.",
                         "manipulators": [
                             {
