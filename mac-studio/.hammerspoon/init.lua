@@ -3,6 +3,16 @@
 
 local hyper = {"cmd", "alt", "ctrl", "shift"}
 
+-- Hyper + R: Trigger Wispr Flow (translates to Cmd+Shift+R for Wispr Flow)
+hs.hotkey.bind(hyper, "r", function()
+    hs.eventtap.keyStroke({"cmd", "shift"}, "r")
+end)
+
+-- Hyper + H: Trigger Home Row (translates to Cmd+Shift+H for Home Row)
+hs.hotkey.bind(hyper, "h", function()
+    hs.eventtap.keyStroke({"cmd", "shift"}, "h")
+end)
+
 -- Hyper + I: Launch iMessage
 hs.hotkey.bind(hyper, "i", function()
     hs.application.launchOrFocus("Messages")
@@ -26,6 +36,21 @@ end)
 -- Hyper + O: Launch Obsidian
 hs.hotkey.bind(hyper, "o", function()
     hs.application.launchOrFocus("Obsidian")
+end)
+
+-- Hyper + W: Launch Safari
+hs.hotkey.bind(hyper, "w", function()
+    hs.application.launchOrFocus("Safari")
+end)
+
+-- Hyper + B: Launch Brave Browser
+hs.hotkey.bind(hyper, "b", function()
+    hs.application.launchOrFocus("Brave Browser")
+end)
+
+-- Hyper + Space: Launch Raycast
+hs.hotkey.bind(hyper, "space", function()
+    hs.application.launchOrFocus("Raycast")
 end)
 
 -- Hyper + Enter: Launch a new Kitty terminal

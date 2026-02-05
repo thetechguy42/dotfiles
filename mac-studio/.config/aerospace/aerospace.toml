@@ -64,15 +64,6 @@ alt-slash = 'layout tiles horizontal vertical'
 # Reload config (matches i3: Super+Shift+c)
 cmd-shift-c = 'reload-config'
 
-# App shortcuts (keeping Alt for these avoids conflicts)
-alt-shift-b = [
-    'workspace 9',
-    'exec-and-forget open -na "Brave Browser" --args --profile-directory="Profile 1"'
-]
-alt-shift-w = [
-    'workspace 1',
-    'exec-and-forget open -na "Brave Browser" --args --profile-directory="Default"'
-]
 
 [[on-window-detected]]
 if.app-id = 'com.apple.finder'
@@ -85,6 +76,14 @@ run = ['move-node-to-workspace 4']
 [[on-window-detected]]
 if.app-id = 'com.apple.MobileSMS'
 run = ['move-node-to-workspace 4']
+
+[[on-window-detected]]
+if.app-id = 'com.brave.Browser'
+run = ['move-node-to-workspace 9']
+
+[[on-window-detected]]
+if.app-id = 'com.apple.safari'
+run = ['move-node-to-workspace 1']
 
 [mode.service.binding]
 # Move window to workspace
