@@ -6,3 +6,13 @@
 .idea/
 *.swp
 *~
+
+# --- Talon Voice ---
+# Runtime cache, databases, and binary blobs
+**/.talon/.sys/
+# Python virtual environment
+**/.talon/.venv/
+# Symlinks to venv
+**/.talon/bin
+# Log files
+**/.talon/*.log
