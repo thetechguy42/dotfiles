@@ -40,6 +40,24 @@
                         ]
                     },
                     {
+                        "description": "F15 → Hyper+R (Wispr Flow toggle via foot pedal)",
+                        "manipulators": [
+                            {
+                                "from": {
+                                    "key_code": "f15",
+                                    "modifiers": { "optional": ["any"] }
+                                },
+                                "to": [
+                                    {
+                                        "key_code": "r",
+                                        "modifiers": ["left_command", "left_control", "left_option", "left_shift"]
+                                    }
+                                ],
+                                "type": "basic"
+                            }
+                        ]
+                    },
+                    {
                         "description": "Hold C for 750ms → Cmd+C (copy). Tap or fast type normally.",
                         "manipulators": [
                             {

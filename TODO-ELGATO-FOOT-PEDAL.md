@@ -176,6 +176,28 @@ A, C, D, G, J, K, L, N, P, U, Y, Z, etc.
 
 ---
 
-**Status**: Not started - waiting for physical pedal setup
+**Status**: ✅ COMPLETED - 2026-02-08
 **Created**: 2026-02-07
-**Priority**: Medium (quality of life improvement)
+**Completed**: 2026-02-08
+
+## Final Working Configuration
+
+### What Actually Worked:
+- **Stream Deck software only** - No BetterTouchTool needed!
+- Pedals bypass Karabiner (so F13/F15 transformations don't work)
+- Solution: Configure full key combos directly in Stream Deck
+
+### Pedal Mappings:
+- **Left Pedal**: F14 → Talon toggle (via foot_pedal.talon)
+- **Middle Pedal**: Cmd+Ctrl+Alt+Shift+Space → Launch Raycast
+- **Right Pedal**: Cmd+Shift+R → Wispr Flow toggle
+
+### Files Created:
+- `mac-studio/.talon/user/personal/foot_pedal.talon` - Talon F14 toggle
+- `mac-studio/.config/karabiner/karabiner.json` - F15 rule (not used, but added)
+
+### Lessons Learned:
+- Stream Deck Pedal bypasses Karabiner and BTT keyboard interception
+- Talon can receive keys directly from Stream Deck
+- For modifier keys, configure full combos in Stream Deck directly
+- BetterTouchTool not needed for basic pedal functionality
