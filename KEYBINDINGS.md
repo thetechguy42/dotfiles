@@ -3,6 +3,7 @@
 Complete mapping of all keyboard shortcuts across Karabiner-Elements, Hammerspoon, and Aerospace.
 
 **Legend:**
+
 - **Hyper** = Cmd+Ctrl+Option+Shift (mapped from Caps Lock and IKEGO foot pedal via Karabiner)
 
 ---
@@ -10,6 +11,7 @@ Complete mapping of all keyboard shortcuts across Karabiner-Elements, Hammerspoo
 ## Foot Pedals
 
 ### Elgato Stream Deck Pedal (3 pedals)
+
 **Note:** These bypass Karabiner - configured directly in Stream Deck software
 
 | Pedal | Sends | Action | Notes |
@@ -18,7 +20,8 @@ Complete mapping of all keyboard shortcuts across Karabiner-Elements, Hammerspoo
 | **Middle** | Cmd+Ctrl+Alt+Shift+Space | Launch Raycast | Direct shortcut (Hyper+Space) |
 | **Right** | Cmd+Shift+R | Toggle Wispr Flow dictation | Direct shortcut |
 
-### IKEGO L Single Foot Pedal
+### iKKEGOL Single Foot Pedal
+
 **Note:** This goes through Karabiner transformation
 
 | Pedal | Sends | Transforms To | Action |
@@ -26,8 +29,9 @@ Complete mapping of all keyboard shortcuts across Karabiner-Elements, Hammerspoo
 | Single pedal | F13 | Hyper (Cmd+Ctrl+Alt+Shift) | Acts as Hyper modifier key |
 
 **Configuration Files:**
+
 - Elgato pedals: Configured in Stream Deck software
-- IKEGO pedal: `mac-studio/.talon/user/personal/foot_pedal.talon` (F14 only)
+- iKKEGOL pedal: `mac-studio/.talon/user/personal/foot_pedal.talon` (F14 only)
 - Karabiner: F13 → Hyper transformation
 
 ---
@@ -98,5 +102,5 @@ Complete mapping of all keyboard shortcuts across Karabiner-Elements, Hammerspoo
 - **Hyper+H conflict resolved:** Karabiner intercepts Hyper+H for Home Row before Aerospace sees it. Aerospace focus moved to Cmd+Alt+H/J/K/L temporarily.
 - **Wispr Flow / Home Row triggers:** Set in-app shortcuts to match Karabiner translations (Cmd+Shift+R, Cmd+Shift+X, Cmd+Shift+H).
 - **Hold C/V for copy/paste:** Uses `to_delayed_action` with 750ms threshold. Tap or fast-type works normally.
-- **Foot pedals:** Elgato Stream Deck Pedal bypasses Karabiner, so shortcuts configured directly. IKEGO pedal uses Karabiner F13→Hyper transformation.
+- **Foot pedals:** Elgato Stream Deck Pedal bypasses Karabiner, so shortcuts configured directly. iKKEGOL pedal uses Karabiner F13→Hyper transformation.
 - **Talon voice toggle:** Can use voice command "go to sleep"/"wake up" OR F14 via Elgato left pedal.
