@@ -22,7 +22,7 @@ hs.hotkey.bind(hyper, "t", function()
     hs.application.launchOrFocus("Microsoft Teams")
 end)
 
--- Hyper + E: Open new Finder window (floats via Aerospace)
+-- Hyper + E: Open new Finder window
 hs.hotkey.bind(hyper, "e", function()
     hs.task.new("/usr/bin/open", nil, {"/Users/jamestucker"}):start()
 end)
@@ -35,6 +35,11 @@ end)
 -- Hyper + O: Launch Obsidian
 hs.hotkey.bind(hyper, "o", function()
     hs.application.launchOrFocus("Obsidian")
+end)
+
+-- Hyper + F: Launch OmniFocus
+hs.hotkey.bind(hyper, "f", function()
+    hs.application.launchOrFocus("OmniFocus")
 end)
 
 -- Hyper + W: Launch Safari
@@ -56,6 +61,24 @@ end)
 hs.hotkey.bind(hyper, "return", function()
     hs.task.new("/opt/homebrew/bin/kitty", nil):start()
 end)
+
+-- ---------------------------------------------------------------------------
+-- Hyper + 1-9: Switch to Space by position
+-- hs.spaces IDs are not stable integers — they are system-assigned and can
+-- change on reboot. We resolve by position: get the ordered space list for
+-- the primary screen each time a hotkey fires.
+-- ---------------------------------------------------------------------------
+for i = 1, 9 do
+    hs.hotkey.bind(hyper, tostring(i), function()
+        local screen = hs.screen.primaryScreen()
+        local spaces = hs.spaces.spacesForScreen(screen)
+        if spaces and spaces[i] then
+            hs.spaces.gotoSpace(spaces[i])
+        else
+            hs.alert.show("Space " .. i .. " does not exist")
+        end
+    end)
+end
 
 -- Reload config notification
 hs.alert.show("Hammerspoon config loaded")
