@@ -3,6 +3,7 @@
 format = """
 [░▒▓](#a3aed2)\
 $username\
+$hostname\
 [](bg:#769ff0 fg:#a3aed2)\
 $directory\
 [](fg:#769ff0 bg:#394260)\
@@ -18,7 +19,12 @@ $time\
 show_always = false
 style_user = "bg:#a3aed2 fg:#090c0c"
 style_root = "bg:#a3aed2 fg:#090c0c"
-format = "[ $user@$hostname ]($style)"
+format = "[ $user@ ]($style)"
+
+[hostname]
+ssh_only = false
+style = "bg:#a3aed2 fg:#090c0c"
+format = "[$hostname ]($style)"
 
 [directory]
 style = "fg:#e3e5e5 bg:#769ff0"
