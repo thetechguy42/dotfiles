@@ -25,7 +25,7 @@ format = "[ $symbol ]($style)"
 
 [os.symbols]
 Macos = ""
-Linux = ""
+Linux = ""
 Windows = ""
 
 [directory]
