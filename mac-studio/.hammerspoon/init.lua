@@ -80,5 +80,30 @@ for i = 1, 9 do
     end)
 end
 
+-- ---------------------------------------------------------------------------
+-- Menu bar: current Space indicator
+-- ---------------------------------------------------------------------------
+local spaceIndicator = hs.menubar.new()
+
+local function updateSpaceIndicator()
+    local screen = hs.screen.primaryScreen()
+    local spaces = hs.spaces.spacesForScreen(screen)
+    local active = hs.spaces.activeSpaceOnScreen(screen)
+    if spaces and active then
+        for i, sid in ipairs(spaces) do
+            if sid == active then
+                spaceIndicator:setTitle("⬛ " .. i)
+                return
+            end
+        end
+    end
+    spaceIndicator:setTitle("⬛ ?")
+end
+
+updateSpaceIndicator()
+
+local spaceWatcher = hs.spaces.watcher.new(updateSpaceIndicator)
+spaceWatcher:start()
+
 -- Reload config notification
 hs.alert.show("Hammerspoon config loaded")
