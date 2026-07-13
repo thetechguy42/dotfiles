@@ -7,6 +7,12 @@
 *.swp
 *~
 
+# --- Secrets ---
+# Defensive: real .env files should never live inside this repo (only
+# .env.example templates), but ignore them anyway in case one gets added.
+**/.env
+!**/.env.example
+
 # --- Talon Voice ---
 # Runtime cache, databases, and binary blobs
 **/.talon/.sys/
