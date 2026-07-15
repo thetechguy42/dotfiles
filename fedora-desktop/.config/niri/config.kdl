@@ -387,14 +387,16 @@ binds {
     // GNOME-side OpenWhispr Hyper+R muscle memory. Unlike OpenWhispr, this
     // works: niri directly runs the toggle command itself (no XWayland
     // global-shortcut grab involved) -- first press starts waystt recording
-    // in the background, second press (SIGUSR1) stops it and types the
-    // transcription at the cursor via wtype (not ydotool -- ydotoold's
-    // socket on this machine lives at /tmp/.ydotool_socket, but niri's spawned
-    // children don't inherit YDOTOOL_SOCKET, so ydotool silently fails to
-    // connect; wtype uses the Wayland virtual-keyboard protocol directly and
-    // has no such dependency).
+    // in the background, second press (SIGUSR1) stops it and pipes the
+    // transcript through waystt-cleanup (OpenAI gpt-4.1-mini pass -- filler
+    // words, grammar, spoken numbers -- matching OpenWhispr's own Text
+    // Cleanup model), which then types the result at the cursor via wtype
+    // (not ydotool -- ydotoold's socket on this machine lives at
+    // /tmp/.ydotool_socket, but niri's spawned children don't inherit
+    // YDOTOOL_SOCKET, so ydotool silently fails to connect; wtype uses the
+    // Wayland virtual-keyboard protocol directly and has no such dependency).
     ISO_Level5_Shift+R repeat=false hotkey-overlay-title="Toggle waystt Dictation" {
-        spawn-sh "pgrep -x waystt >/dev/null && pkill --signal SIGUSR1 waystt || (waystt --pipe-to wtype - &)";
+        spawn-sh "pgrep -x waystt >/dev/null && pkill --signal SIGUSR1 waystt || (waystt --pipe-to waystt-cleanup &)";
     }
 
     // Use spawn-sh to run a shell command. Do this if you need pipes, multiple commands, etc.
