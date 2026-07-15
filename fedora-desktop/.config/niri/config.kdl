@@ -429,6 +429,20 @@ binds {
     ISO_Level5_Shift+9 { focus-workspace 9; }
     ISO_Level5_Shift+Q repeat=false hotkey-overlay-title="Close Window (Hyper analog)" { close-window; }
 
+    // Hyper-analog move-column-to-workspace, mirroring the stock Mod+Ctrl+1-9
+    // binds below (kept in place, unchanged) -- gives the Hyper set feature
+    // parity with mac-studio's Aerospace service-mode window-move (Hyper+S,
+    // then a digit), without needing a separate modal mode.
+    ISO_Level5_Shift+Ctrl+1 { move-column-to-workspace 1; }
+    ISO_Level5_Shift+Ctrl+2 { move-column-to-workspace 2; }
+    ISO_Level5_Shift+Ctrl+3 { move-column-to-workspace 3; }
+    ISO_Level5_Shift+Ctrl+4 { move-column-to-workspace 4; }
+    ISO_Level5_Shift+Ctrl+5 { move-column-to-workspace 5; }
+    ISO_Level5_Shift+Ctrl+6 { move-column-to-workspace 6; }
+    ISO_Level5_Shift+Ctrl+7 { move-column-to-workspace 7; }
+    ISO_Level5_Shift+Ctrl+8 { move-column-to-workspace 8; }
+    ISO_Level5_Shift+Ctrl+9 { move-column-to-workspace 9; }
+
     // Use spawn-sh to run a shell command. Do this if you need pipes, multiple commands, etc.
     // Note: the entire command goes as a single argument. It's passed verbatim to `sh -c`.
     // For example, this is a standard bind to toggle the screen reader (orca).
