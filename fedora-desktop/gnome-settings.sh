@@ -63,9 +63,7 @@ gsettings set org.gnome.settings-daemon.plugins.media-keys custom-keybindings \
     '/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/hyper-obsidian/', \
     '/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/hyper-teams/', \
     '/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/hyper-kitty/', \
-    '/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/hyper-files/', \
-    '/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/copy-forward/', \
-    '/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/paste-forward/']"
+    '/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/hyper-files/']"
 
 base="org.gnome.settings-daemon.plugins.media-keys.custom-keybinding:/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings"
 
@@ -100,19 +98,17 @@ gsettings set $base/hyper-files/ name "Launch Files (Hyper)"
 gsettings set $base/hyper-files/ command "nautilus"
 gsettings set $base/hyper-files/ binding "<Hyper>e"
 
-# --- Super+C / Super+V forwarded as Ctrl+C / Ctrl+V ---
-# Mac-habit Cmd+C/Cmd+V muscle memory lands on Super+C/Super+V here (same
-# issue hit under Niri -- see fedora-desktop/.config/niri/config.kdl).
-# Super+C was unbound in GNOME already; Super+V was bound to
-# toggle-message-tray, aliased with Super+M -- freed Super+V there first
-# (Super+M still opens the tray) before claiming it here, so there's no
-# shell-vs-custom-keybinding grab conflict.
-gsettings set org.gnome.shell.keybindings toggle-message-tray "['<Super>m']"
-
-gsettings set $base/copy-forward/ name "Copy (forwards Ctrl+C on Super+C)"
-gsettings set $base/copy-forward/ command "wtype -M ctrl -k c -m ctrl"
-gsettings set $base/copy-forward/ binding "<Super>c"
-
-gsettings set $base/paste-forward/ name "Paste (forwards Ctrl+V on Super+V)"
-gsettings set $base/paste-forward/ command "wtype -M ctrl -k v -m ctrl"
-gsettings set $base/paste-forward/ binding "<Super>v"
+# --- Super+C / Super+V forwarding: tried and reverted, GNOME keeps stock behavior ---
+# Attempted the same Mac-habit Cmd+C/Cmd+V forwarding trick used under Niri
+# (see fedora-desktop/.config/niri/config.kdl), first via wtype then via
+# ydotool. Root-caused as fundamentally incompatible with GNOME/Mutter:
+# wtype fails outright (Mutter doesn't expose the Wayland virtual-keyboard
+# protocol to it), and ydotool's kernel-level uinput injection works for
+# paste but not copy -- Mutter requires a clipboard *write* (copy) to carry
+# a "fresh" input-event serial tied to real focus/activation, which a
+# grab-then-spawn-a-process-then-inject architecture can't provide. Paste
+# has no such restriction (reading the clipboard is unrestricted), which is
+# why only copy failed. Reverted: GNOME keeps stock Ctrl+C/Ctrl+V (already
+# working) and stock Super+V/Super+M tray toggle. See Fedora Desktop Setup
+# project notes (Backlog + Progress Log) for the full investigation.
+gsettings set org.gnome.shell.keybindings toggle-message-tray "['<Super>v', '<Super>m']"
