@@ -412,6 +412,21 @@ binds {
     // Hyper+Enter on both mac-studio and GNOME.
     ISO_Level5_Shift+Return repeat=false hotkey-overlay-title="Launch Kitty" { spawn "kitty"; }
 
+    // Hyper-analog workspace-switch and close-window, mirroring GNOME's
+    // Hyper+1-9/Hyper+Q (org.gnome.desktop.wm.keybindings) for muscle-memory
+    // parity with mac-studio's Aerospace Hyper+1-9/Hyper+Q. Additive only --
+    // the stock Mod+1-9/Mod+Q binds below are left in place unchanged.
+    ISO_Level5_Shift+1 { focus-workspace 1; }
+    ISO_Level5_Shift+2 { focus-workspace 2; }
+    ISO_Level5_Shift+3 { focus-workspace 3; }
+    ISO_Level5_Shift+4 { focus-workspace 4; }
+    ISO_Level5_Shift+5 { focus-workspace 5; }
+    ISO_Level5_Shift+6 { focus-workspace 6; }
+    ISO_Level5_Shift+7 { focus-workspace 7; }
+    ISO_Level5_Shift+8 { focus-workspace 8; }
+    ISO_Level5_Shift+9 { focus-workspace 9; }
+    ISO_Level5_Shift+Q repeat=false hotkey-overlay-title="Close Window (Hyper analog)" { close-window; }
+
     // Use spawn-sh to run a shell command. Do this if you need pipes, multiple commands, etc.
     // Note: the entire command goes as a single argument. It's passed verbatim to `sh -c`.
     // For example, this is a standard bind to toggle the screen reader (orca).
