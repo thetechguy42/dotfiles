@@ -407,6 +407,10 @@ binds {
     ISO_Level5_Shift+O repeat=false hotkey-overlay-title="Launch Obsidian" { spawn "flatpak" "run" "md.obsidian.Obsidian"; }
     ISO_Level5_Shift+T repeat=false hotkey-overlay-title="Launch Teams" { spawn "flatpak" "run" "com.github.IsmaelMartinez.teams_for_linux"; }
     ISO_Level5_Shift+E repeat=false hotkey-overlay-title="Launch Files: nautilus" { spawn "nautilus"; }
+    // Mod+T (stock) still launches alacritty, left as-is; this is a second,
+    // independent terminal launcher on the Hyper analog for Kitty, matching
+    // Hyper+Enter on both mac-studio and GNOME.
+    ISO_Level5_Shift+Return repeat=false hotkey-overlay-title="Launch Kitty" { spawn "kitty"; }
 
     // Use spawn-sh to run a shell command. Do this if you need pipes, multiple commands, etc.
     // Note: the entire command goes as a single argument. It's passed verbatim to `sh -c`.
@@ -613,7 +617,12 @@ binds {
     // Makes the column "fill the rest of the space".
     Mod+Ctrl+F { expand-column-to-available-width; }
 
-    Mod+C { center-column; }
+    // Remapped 2026-07-15: stock center-column kept clashing with Mac-habit
+    // Cmd+C muscle memory landing on Mod+C here. Forwards a real Ctrl+C to
+    // the focused window instead via wtype; center-column itself moved to
+    // Mod+Shift+C below.
+    Mod+C repeat=false hotkey-overlay-title="Copy (forwards Ctrl+C)" { spawn "wtype" "-M" "ctrl" "-k" "c" "-m" "ctrl"; }
+    Mod+Shift+C { center-column; }
 
     // Center all fully visible columns on screen.
     Mod+Ctrl+C { center-visible-columns; }
@@ -633,8 +642,13 @@ binds {
     Mod+Shift+Minus { set-window-height "-10%"; }
     Mod+Shift+Equal { set-window-height "+10%"; }
 
-    // Move the focused window between the floating and the tiling layout.
-    Mod+V       { toggle-window-floating; }
+    // Remapped 2026-07-15: stock toggle-window-floating kept clashing with
+    // Mac-habit Cmd+V muscle memory landing on Mod+V here. Forwards a real
+    // Ctrl+V to the focused window instead via wtype; toggle-window-floating
+    // itself moved to Mod+Ctrl+V below (Mod+Shift+V still works for
+    // switching focus between floating/tiling, untouched).
+    Mod+V       repeat=false hotkey-overlay-title="Paste (forwards Ctrl+V)" { spawn "wtype" "-M" "ctrl" "-k" "v" "-m" "ctrl"; }
+    Mod+Ctrl+V  { toggle-window-floating; }
     Mod+Shift+V { switch-focus-between-floating-and-tiling; }
 
     // Toggle tabbed column display mode.
