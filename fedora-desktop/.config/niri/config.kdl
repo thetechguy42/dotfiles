@@ -399,6 +399,15 @@ binds {
         spawn-sh "pgrep -x waystt >/dev/null && pkill --signal SIGUSR1 waystt || (waystt --pipe-to waystt-cleanup &)";
     }
 
+    // Hyper-analog (Caps-Lock-as-ISO_Level5_Shift) app launchers, mirroring
+    // the GNOME-side custom-keybindings and mac-studio's Hammerspoon set
+    // (dotfiles/KEYBINDINGS.md) for muscle-memory parity across all three.
+    // Same Flatpak app IDs and nautilus binary as gnome-settings.sh.
+    ISO_Level5_Shift+B repeat=false hotkey-overlay-title="Launch Brave" { spawn "flatpak" "run" "com.brave.Browser"; }
+    ISO_Level5_Shift+O repeat=false hotkey-overlay-title="Launch Obsidian" { spawn "flatpak" "run" "md.obsidian.Obsidian"; }
+    ISO_Level5_Shift+T repeat=false hotkey-overlay-title="Launch Teams" { spawn "flatpak" "run" "com.github.IsmaelMartinez.teams_for_linux"; }
+    ISO_Level5_Shift+E repeat=false hotkey-overlay-title="Launch Files: nautilus" { spawn "nautilus"; }
+
     // Use spawn-sh to run a shell command. Do this if you need pipes, multiple commands, etc.
     // Note: the entire command goes as a single argument. It's passed verbatim to `sh -c`.
     // For example, this is a standard bind to toggle the screen reader (orca).
