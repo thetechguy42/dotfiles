@@ -82,6 +82,14 @@ input {
 // Find more information on the wiki:
 // https://niri-wm.github.io/niri/Configuration:-Outputs
 // Remember to uncomment the node by removing "/-"!
+// HDMI-A-3 is the DENON AVR feeding the living-room TV. It's disabled in
+// GNOME's display settings, but niri doesn't read that config -- it needs
+// its own output block. DP-2 (the LG primary monitor) is left unconfigured
+// below and niri will use it as the sole active output.
+output "HDMI-A-3" {
+    off
+}
+
 /-output "eDP-1" {
     // Uncomment this line to disable this output.
     // off
