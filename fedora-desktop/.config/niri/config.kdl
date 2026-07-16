@@ -334,6 +334,13 @@ window-rule {
     default-column-width {}
 }
 
+// Open Obsidian maximized by default (default-column-width is 0.5 for all
+// other apps, so without this it always opens at half screen width).
+window-rule {
+    match app-id=r#"^obsidian$"#
+    open-maximized true
+}
+
 // Open the Firefox picture-in-picture player as floating by default.
 window-rule {
     // This app-id regular expression will work for both:
