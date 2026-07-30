@@ -11,14 +11,19 @@ if [[ -f "$ENV_FILE" ]]; then
     set +a
 fi
 
+notify() {
+    notify-send --app-name="waystt" --urgency=normal "$1" "$2"
+}
+
 TRANSCRIPT="$(cat)"
 
 if [[ -z "$TRANSCRIPT" ]]; then
+    notify "Dictation: nothing heard" "Transcription came back empty. Try again."
     exit 0
 fi
 
 if [[ -z "${OPENAI_API_KEY:-}" ]]; then
-    echo "waystt-cleanup: OPENAI_API_KEY not set, passing through raw transcript" >&2
+    notify "Dictation: cleanup skipped" "OPENAI_API_KEY not set, typing raw transcript."
     printf '%s' "$TRANSCRIPT" | wtype -
     exit 0
 fi
@@ -42,6 +47,7 @@ RESPONSE="$(curl -sS --max-time 15 https://api.openai.com/v1/chat/completions \
 CLEANED="$(jq -r '.choices[0].message.content // empty' <<<"$RESPONSE" 2>/dev/null || true)"
 
 if [[ -z "$CLEANED" ]]; then
+    notify "Dictation: cleanup failed" "Typing raw transcript instead. See below for the API response."
     echo "waystt-cleanup: cleanup failed, passing through raw transcript" >&2
     echo "$RESPONSE" >&2
     printf '%s' "$TRANSCRIPT" | wtype -
